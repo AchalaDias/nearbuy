@@ -82,7 +82,7 @@ class CategoryController extends Controller
             Category::create([
                 'name' => $data['name'],
                 'parent' => $category->id,
-                'image_path' => $data['image'],
+                'image_path' => '/img/admin/uploard.png',
                 'status' => 0,
                 'user_id' => Auth::user()->id
             ]);
@@ -92,4 +92,46 @@ class CategoryController extends Controller
         return response()->json(['msg'=> 'success', 'redirect' => route('admin.categories') ]);
         // return redirect()->intended(route('admin.categories'));
     }
+
+    /**
+     * loard data for edit Category.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editCategory(Request $request) {    
+        if(is_null($request->id)){
+            Notify::error('Invalid Category Id ', $title = null, $options = []);
+            return redirect()->intended(route('admin.categories'));
+        }
+        
+        $category_data = Category::find($request->id);
+        return view('admin.category.edit')
+                ->with(compact('category_data'));
+    }
+
+    /**
+     * save edited data in Category.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function saveEdit(Request $request) {    
+        // Validate the form data
+        $validator = $this->validate($request, [
+            'name' => 'required|min:3|max:50',
+            'id' => 'required',
+            'parent' => 'required'
+        ]);
+
+        if($request->all()['parent'] == 0) {
+            $validator = $this->validate($request, [
+                'image_path' => 'required|base64mimes:jpeg,jpg|base64max:5000'
+            ]);
+        }
+        $data = $request->all();
+        Category::whereId($data['id'])->update($request->except(['parent','user_id','status','ref_id']));
+
+        Notify::info('Category Updated Successfully !', $title = null, $options = []);
+        return response()->json(['msg'=> 'success', 'redirect' => route('admin.categories') ]);
+    }
+
 }

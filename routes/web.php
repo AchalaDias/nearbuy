@@ -42,7 +42,8 @@ Route::post('/users/delete', 'UsersController@delete')->name('admin.users.delete
 Route::get('/category', 'CategoryController@index')->name('admin.categories');
 Route::get('/category/create', 'CategoryController@loardForm')->name('admin.category.create');
 Route::post('/category/submit', 'CategoryController@createCategory')->name('admin.category.submit');
-
+Route::get('/category/edit', 'CategoryController@editCategory')->name('admin.category.edit');
+Route::post('/category/edit/submit', 'CategoryController@saveEdit')->name('admin.category.edit.submit');
 
 
 // Password reset routes

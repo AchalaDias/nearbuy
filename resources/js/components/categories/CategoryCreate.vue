@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="form-group" v-show="image_show">
-                <label for="Password">Categories Type</label>
+                <label for="Password">Root Category Image</label>
                 <div>
                     <input type="file" name="image_file" @change="getImage" ref="fileInput" enctype="multipart/form-data" >
                     <img :src="category.image" alt="image" width="300" height="300" class="img-thumbnail">
