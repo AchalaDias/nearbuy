@@ -27,7 +27,12 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        $items = Item::get();
+        
+        if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2) {
+            $items = Item::get();
+        } else {
+            $items = Item::where('user_id','=',Auth::user()->id)->get();
+        }
         return view('admin.items.list')->with(compact('items'));
     }
 

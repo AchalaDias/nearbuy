@@ -6,7 +6,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Create Category</h3>
             </div>
-            <category-edit :category_data="{{ json_encode($category_data) }}" ></category-edit>
+            <category-edit :category_data="{{ json_encode($category_data) }}" :user="{{ Auth::user() }}"></category-edit>
           </div>
         </div>
 </section>

@@ -142,15 +142,26 @@
         <li class="header">MAIN NAVIGATION</li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-sitemap"></i> <span>Admin</span>
+            <i class="fa fa-sitemap"></i> <span>
+            @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+              Admin
+            @elseif( Auth::user()->role_id == 3 )
+              Vendor
+            @endif
+            </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
+            @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
             <li><a href="{{ route('admin.users') }}"><i class="fa fa-users"></i> Users</a></li>
+            @endif
             <li><a href="{{ route('admin.categories') }}"><i class="fa fa-reorder"></i> Categories</a></li>
             <li><a href="{{ route('admin.items') }}"><i class="fa fa-suitcase"></i> Items</a></li>
+            @if(Auth::user()->role_id == 3)
+            <li><a href="{{ route('vendor.vendor') }}"><i class="fa fa-user-plus"></i> Vendor Profile</a></li>
+            @endif
             <!-- <li><a href="../../index2.html"><i class="fa fa-users"></i> Roles</a></li> -->
           </ul>
         </li>

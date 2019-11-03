@@ -11,6 +11,7 @@
             <div class="box box-default collapsed-box">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{  $main_category->name }}</h3>
+                    @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
                     <div class="btn-group pull-right">
                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
@@ -24,6 +25,7 @@
                             </li>
                         </ul>
                     </div>
+                    @endif
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
                         </button>
@@ -35,11 +37,12 @@
                         <div class="comment-text">
                             -- {{  $sub_category->name  }}
                         </div>
-                        <div class="timeline-footer">
-                            <a href="{{ route('admin.category.edit', ['id' => $sub_category->id ]) }}" class="btn btn-primary btn-xs">Edit</a>
-                            <a class="btn btn-danger btn-xs">Delete</a>
-                        </div>
-                        
+                            @if(Auth::user()->id ==  $sub_category->user_id)
+                            <div class="timeline-footer">
+                                <a href="{{ route('admin.category.edit', ['id' => $sub_category->id ]) }}" class="btn btn-primary btn-xs">Edit</a>
+                                <a class="btn btn-danger btn-xs">Delete</a>
+                            </div>
+                            @endif
                         @endif
                 @endforeach
                 </div>

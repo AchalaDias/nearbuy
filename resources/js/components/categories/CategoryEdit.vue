@@ -6,7 +6,7 @@
                 <input type="text" class="form-control" v-model="category.name" placeholder="Enter Category Name" required>
                 <span style="color:red" v-for="error in errors.name" v-bind:key="error" >{{ error }}</span>
             </div>
-            <div class="form-group">
+            <div class="form-group" v-if="user.role_id == 1 || user.role_id == 2">
                 <label for="Password">Display Status</label>
                 <div class="box-body">
                     <input type="checkbox" class="minimal" id="checkbox" v-model="category.status">
@@ -49,6 +49,10 @@
         },
         props: {
             category_data: {
+                type: Object,
+                required: true
+            },
+            user: {
                 type: Object,
                 required: true
             }

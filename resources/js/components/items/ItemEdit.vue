@@ -51,7 +51,7 @@
                     <span style="color:red" v-for="error in errors.description" v-bind:key="error" >{{ error }}</span>
                 </div>
             </div>
-            <div class="form-group ">
+            <div class="form-group"  v-if="user.role_id == 1 || user.role_id == 2">
                 <label for="Password">Display Status</label>
                 <div class="box-body">
                     <input type="checkbox" class="minimal" id="checkbox" v-model="item.status">
@@ -100,6 +100,10 @@
                 required: true
             },
             edit_item: {
+                type: Object,
+                required: true
+            },
+            user: {
                 type: Object,
                 required: true
             }

@@ -53,6 +53,9 @@ Route::get('/items/edit', 'ItemsController@editItem')->name('admin.items.edit');
 Route::post('/items/edit/submit', 'ItemsController@saveEdit')->name('admin.items.edit.submit');
 Route::post('/items/delete', 'ItemsController@delete')->name('admin.items.delete');
 
+// Vendor Profile
+Route::get('/vendor', 'VendorProfileController@index')->name('vendor.vendor');
+Route::post('/vendor/save', 'VendorProfileController@save')->name('vendor.save');
 
 // Password reset routes
 //   Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');

@@ -9,14 +9,14 @@
             <div class="form-group">
                 <label for="Password">Categories Type</label>
                 <div class="form-group">
-                    <select class="form-control select2" placeholder="Select..."  v-model="category.category_id" @change="checkRoot" equired>
+                    <select class="form-control" placeholder="Select..." v-model="category.category_id" @change="checkRoot" equired>
                         <option  disabled selected>Select....</option>
                             <option  v-for="category in categories"  v-bind:key="category.id" :value="category.id" :disabled="category.parent != 0">{{ category.name }}</option>
                     </select>
                     <span style="color:red" v-for="error in errors.category_id" v-bind:key="error" >{{ error }}</span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" v-if="user.role_id == 1 || user.role_id == 2">
                 <label for="Password">Display Status</label>
                 <div class="box-body">
                     <input type="checkbox" class="minimal" id="checkbox" v-model="category.status">
@@ -64,10 +64,18 @@
             sub_categories: {
                 type: Array,
                 required: true
+            },
+            user: {
+                type: Object,
+                required: true
             }
         },
         mounted() {
             // Ordering the main categories and sub categories before loard the page 
+            console.log(this.user.role_id);
+            if(this.user.role_id != 1 && this.user.role_id != 2 ){
+                this.main_categories.shift();
+            }
             this.main_categories.forEach(main_categorie => {
                 this.categories.push(main_categorie);
                 this.sub_categories.forEach(sub_categorie => {
