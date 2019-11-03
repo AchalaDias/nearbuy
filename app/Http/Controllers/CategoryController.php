@@ -60,6 +60,7 @@ class CategoryController extends Controller
          $validator = $this->validate($request, [
             'name' => 'required|min:3|max:50|unique:categories',
             'category_id' => 'required',
+            'status' => 'required'
         ]);
 
         if($request->all()['category_id'] == 1) {
@@ -75,7 +76,7 @@ class CategoryController extends Controller
                 'name' => $data['name'],
                 'parent' => 0,
                 'image_path' => $data['image'],
-                'status' => 0,
+                'status' => $data['status'],
                 'user_id' => Auth::user()->id
             ]);
         } else {
@@ -83,7 +84,7 @@ class CategoryController extends Controller
                 'name' => $data['name'],
                 'parent' => $category->id,
                 'image_path' => '/img/admin/uploard.png',
-                'status' => 0,
+                'status' => $data['status'],
                 'user_id' => Auth::user()->id
             ]);
         }
@@ -119,7 +120,8 @@ class CategoryController extends Controller
         $validator = $this->validate($request, [
             'name' => 'required|min:3|max:50',
             'id' => 'required',
-            'parent' => 'required'
+            'parent' => 'required',
+            'status' => 'required'
         ]);
 
         if($request->all()['parent'] == 0) {
@@ -128,10 +130,19 @@ class CategoryController extends Controller
             ]);
         }
         $data = $request->all();
-        Category::whereId($data['id'])->update($request->except(['parent','user_id','status','ref_id']));
+        Category::whereId($data['id'])->update($request->except(['parent','user_id','ref_id']));
 
         Notify::info('Category Updated Successfully !', $title = null, $options = []);
         return response()->json(['msg'=> 'success', 'redirect' => route('admin.categories') ]);
+    }
+
+    /**
+     * delete Category.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request) {  
+
     }
 
 }

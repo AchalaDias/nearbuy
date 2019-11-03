@@ -45,6 +45,14 @@ Route::post('/category/submit', 'CategoryController@createCategory')->name('admi
 Route::get('/category/edit', 'CategoryController@editCategory')->name('admin.category.edit');
 Route::post('/category/edit/submit', 'CategoryController@saveEdit')->name('admin.category.edit.submit');
 
+// Item Managment
+Route::get('/items', 'ItemsController@index')->name('admin.items');
+Route::get('/items/create', 'ItemsController@loardForm')->name('admin.items.create');
+Route::post('/items/submit', 'ItemsController@createItem')->name('admin.items.submit');
+Route::get('/items/edit', 'ItemsController@editItem')->name('admin.items.edit');
+Route::post('/items/edit/submit', 'ItemsController@saveEdit')->name('admin.items.edit.submit');
+Route::post('/items/delete', 'ItemsController@delete')->name('admin.items.delete');
+
 
 // Password reset routes
 //   Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');

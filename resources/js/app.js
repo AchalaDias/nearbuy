@@ -21,6 +21,8 @@ window.Vue = require('vue');
 
 Vue.component('category-create', require('./components/categories/CategoryCreate.vue').default);
 Vue.component('category-edit', require('./components/categories/CategoryEdit.vue').default);
+Vue.component('items-create', require('./components/items/ItemCreate.vue').default);
+Vue.component('items-edit', require('./components/items/ItemEdit.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

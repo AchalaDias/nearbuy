@@ -9,11 +9,17 @@
             <div class="form-group">
                 <label for="Password">Categories Type</label>
                 <div class="form-group">
-                    <select class="form-control" placeholder="Select..."  v-model="category.category_id" @change="checkRoot" equired>
+                    <select class="form-control select2" placeholder="Select..."  v-model="category.category_id" @change="checkRoot" equired>
                         <option  disabled selected>Select....</option>
                             <option  v-for="category in categories"  v-bind:key="category.id" :value="category.id" :disabled="category.parent != 0">{{ category.name }}</option>
                     </select>
                     <span style="color:red" v-for="error in errors.category_id" v-bind:key="error" >{{ error }}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Password">Display Status</label>
+                <div class="box-body">
+                    <input type="checkbox" class="minimal" id="checkbox" v-model="category.status">
                 </div>
             </div>
             <div class="form-group" v-show="image_show">
@@ -40,6 +46,7 @@
                     name: null,
                     category_id: null,
                     image: '/img/admin/uploard.png',
+                    status: false
                 },
                 image_show: false,
                 errors: {
@@ -76,7 +83,11 @@
                 let headers = {
                     'Content-Type': 'application/json;charset=utf-8'
                 };
-                console.log(this.category);
+                if(this.category.status) {
+                    this.category.status = 1;
+                } else {
+                    this.category.status = 0;
+                }
                 axios.post('submit', JSON.stringify(this.category), { headers })
                 .then(res => {
                     console.log(res);

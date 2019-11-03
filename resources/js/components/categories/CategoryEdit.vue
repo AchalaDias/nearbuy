@@ -1,10 +1,16 @@
 <template>
-    <form  @submit.prevent="createCategory">
+    <form  @submit.prevent="saveCategory">
         <div class="box-body">
             <div class="form-group">
                 <label for="Name">Category Name</label>
                 <input type="text" class="form-control" v-model="category.name" placeholder="Enter Category Name" required>
                 <span style="color:red" v-for="error in errors.name" v-bind:key="error" >{{ error }}</span>
+            </div>
+            <div class="form-group">
+                <label for="Password">Display Status</label>
+                <div class="box-body">
+                    <input type="checkbox" class="minimal" id="checkbox" v-model="category.status">
+                </div>
             </div>
             <div class="form-group" v-show="image_show">
                 <label for="Password">Root Category Image</label>
@@ -30,7 +36,8 @@
                     name: null,
                     id: null,
                     image_path: '/img/admin/uploard.png',
-                    parent: null
+                    parent: null,
+                    status: false
                 },
                 image_show: false,
                 errors: {
@@ -51,16 +58,23 @@
             this.category.id = this.category_data.id;
             this.category.image_path = this.category_data.image_path;
             this.category.parent = this.category_data.parent;
+            if(this.category_data.status == 1) {
+                this.category.status = true;
+            }
              if(this.category_data.parent == 0 ) {
                 this.image_show = true;
             } 
         },
         methods: {
-            createCategory() {
+            saveCategory() {
                 let headers = {
                     'Content-Type': 'application/json;charset=utf-8'
                 };
-                console.log(this.category);
+                if(this.category.status) {
+                    this.category.status = 1;
+                } else {
+                    this.category.status = 0;
+                }
                 axios.post('edit/submit', JSON.stringify(this.category), { headers })
                 .then(res => {
                     console.log(res);

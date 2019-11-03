@@ -14,13 +14,18 @@
   <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
-  <!-- Theme style -->
   <!-- DataTables -->
   <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="../../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+   <!-- bootstrap wysihtml5 - text editor -->
+   <link rel="stylesheet" href="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -145,6 +150,7 @@
           <ul class="treeview-menu">
             <li><a href="{{ route('admin.users') }}"><i class="fa fa-users"></i> Users</a></li>
             <li><a href="{{ route('admin.categories') }}"><i class="fa fa-reorder"></i> Categories</a></li>
+            <li><a href="{{ route('admin.items') }}"><i class="fa fa-suitcase"></i> Items</a></li>
             <!-- <li><a href="../../index2.html"><i class="fa fa-users"></i> Roles</a></li> -->
           </ul>
         </li>
@@ -190,6 +196,13 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<!-- Select2 -->
+<script src="../../bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="../../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+
+<!-- Bootstrap WYSIHTML5 -->
+<script src="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
 <script>
   $(document).ready(function () {
@@ -199,6 +212,17 @@
 <script>
   $(function () {
     $('#users').DataTable()
+    $('.select2').select2()
+    var dateToday = new Date(); 
+    $('#promo_start').datepicker({
+      autoclose: true,
+      startDate: dateToday
+    })
+    $('#promo_end').datepicker({
+      autoclose: true,
+      startDate: dateToday
+    })
+    $('.textarea').wysihtml5()
   })
 </script>
 </body>

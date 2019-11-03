@@ -67,17 +67,6 @@ class UsersController extends Controller
         
         Notify::success('User Created Successfully !', $title = null, $options = []);
         return redirect()->intended(route('admin.users'));
-
-        // $notification = array(
-        //     'message' => 'User Created Successfully !',
-        //     'alert_type' => 'success'
-        // );
-
-        // $users = Admin::get();
-        // Notify::info('User Created Successfully !', $title = null, $options = []);
-        // return view('admin.users.list')
-        //         ->with(compact('users'))
-        //         ->with(compact('notification'));
         
     }
 
