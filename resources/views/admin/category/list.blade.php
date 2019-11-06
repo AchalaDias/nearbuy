@@ -40,7 +40,7 @@
                             @if(Auth::user()->id ==  $sub_category->user_id)
                             <div class="timeline-footer">
                                 <a href="{{ route('admin.category.edit', ['id' => $sub_category->id ]) }}" class="btn btn-primary btn-xs">Edit</a>
-                                <a class="btn btn-danger btn-xs">Delete</a>
+                                <!-- <a class="btn btn-danger btn-xs">Delete</a> -->
                             </div>
                             @endif
                         @endif

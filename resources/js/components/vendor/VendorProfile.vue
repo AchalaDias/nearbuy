@@ -70,7 +70,6 @@
                 let headers = {
                     'Content-Type': 'application/json;charset=utf-8'
                 };
-            
                 axios.post('vendor/save', JSON.stringify(this.vendor), { headers })
                 .then(res => {
                     console.log(res);

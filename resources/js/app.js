@@ -4,7 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+// require('./bootstrap');
 
 window.Vue = require('vue');
 
@@ -24,6 +24,11 @@ Vue.component('category-edit', require('./components/categories/CategoryEdit.vue
 Vue.component('items-create', require('./components/items/ItemCreate.vue').default);
 Vue.component('items-edit', require('./components/items/ItemEdit.vue').default);
 Vue.component('vendor-profile', require('./components/vendor/vendorProfile.vue').default);
+
+
+Vue.component('web-index', require('./components/web/Index.vue').default);
+Vue.component('web-footer', require('./components/web/footer.vue').default);
+Vue.component('web-header', require('./components/web/header.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
