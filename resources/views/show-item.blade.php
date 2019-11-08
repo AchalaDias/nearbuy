@@ -3,6 +3,7 @@
     <div class="container dark-grey-text mt-5">
 
       <!--Grid row-->
+      <h2 class=" font-weight-bold mb-4 pb-2">{{ $item->title }}</h2>
       <div class="row wow fadeIn">
 
         <!--Grid column-->
@@ -41,9 +42,9 @@
 
             <form class="d-flex justify-content-left">
               <!-- Default input -->
-              <button class="btn btn-primary btn-md my-0 p" type="submit">Add to Wishlist
+              <a  href="{{ route('web.wishlist.add', ['item_id' => $item->id]) }}" class="btn btn-primary btn-md my-0 p" >Add to Wishlist
                 <i class="fas fa-shopping-cart ml-1"></i>
-              </button>
+              </a>
 
             </form>
 

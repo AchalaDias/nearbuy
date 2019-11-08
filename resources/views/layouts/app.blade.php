@@ -29,7 +29,7 @@
 </head>
 <body>
     <!--Main Navigation-->
-<header >
+<header id="app">
 
     <!-- Navbar -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
@@ -72,8 +72,8 @@
                     <!-- Right -->
                     <ul class="navbar-nav nav-flex-icons">
                         <li class="nav-item">
-                            <a class="nav-link waves-effect">
-                            <span class="badge orange z-depth-1 mr-1"> 0 </span>
+                            <a href="{{ route('web.wishlist.list') }}" class="nav-link waves-effect">
+                            <web-wishlist-count></web-wishlist-count>
                                 <i class="fas fa-shopping-cart"></i>
                                 <span class="clearfix d-none d-sm-inline-block"> Wish List </span>
                                 </a>
@@ -92,16 +92,20 @@
                         </li>
                         @endif
                         @else
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                    
+                            <a class="nav-link " id="navbarDropdownMenuLink" 
                                     aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
-                            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                            
+                  
+                        <ul class="navbar-nav nav-flex-icons">
+                        <li class="nav-item">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }} </a>
-                            </div>
-                        </li>
+                
+
+                          </li>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

@@ -47,7 +47,6 @@ class HomeController extends Controller
         }
 
         $category = Category::find($request->id);
-        // $sub_list = DB::select("SELECT c.id,c.name, count(i.id) as 'item_count', c.status   FROM newbuy.items i, newbuy.categories c where i.category_id = c.id and c.parent=".$request->id." and c.status = 1 and c.status = 1 group by i.category_id");
         $sub_list = DB::select("
         SELECT  c.id, c.name, COUNT(i.id) AS item_count
         FROM  
@@ -70,7 +69,6 @@ class HomeController extends Controller
         }
 
         $category = Category::find($request->main_id);
-        // $sub_list = DB::select("SELECT c.id,c.name, count(i.id) as 'item_count', c.status  FROM newbuy.items i, newbuy.categories c where i.category_id = c.id and c.parent=".$request->main_id." and c.status = 1 and i.status = 1  group by i.category_id");
         $sub_list = DB::select("
         SELECT  c.id, c.name, COUNT(i.id) AS item_count
         FROM  

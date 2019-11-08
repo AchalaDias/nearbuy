@@ -20,6 +20,10 @@ Route::get('/web/category/list', 'HomeController@listCategories')->name('web.cat
 Route::get('/web/items/list', 'HomeController@listItems')->name('web.items.list');
 Route::get('/web/sub/items/list', 'HomeController@listSubItems')->name('web.sub.items.list');
 Route::get('/web/show/item', 'HomeController@showItem')->name('web.show.item');
+Route::get('/web/wishlist/add', 'WishlistController@add')->name('web.wishlist.add');
+Route::get('/web/wishlist/count', 'WishlistController@getCount')->name('web.wishlist.count');
+Route::get('/web/wishlist/list', 'WishlistController@list')->name('web.wishlist.list');
+Route::get('/web/wishlist/delete', 'WishlistController@delete')->name('web.wishlist.delete');
 
 Route::prefix('admin')->group(function() {
 // Auth 

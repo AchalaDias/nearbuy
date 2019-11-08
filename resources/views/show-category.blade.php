@@ -82,7 +82,7 @@
             <div class="col-md-9">
 
               <!-- Excerpt -->
-              <p class="font-weight-bold dark-grey-text" > <button class="btn peach-gradient">Expiary Date : {{ $items->promo_until }}</button> </p>
+              <p class="font-weight-bold dark-grey-text" > <button class="btn peach-gradient">Expiary Date : {{ date('Y-m-d', strtotime($items->promo_until)) }}</button> </p>
               <div class="d-flex justify-content-between">
                 <div class="col-11 text-truncate pl-0 mb-3">
                   <a href="{{ route('web.show.item', ['id' => $items->id ]) }}" class="dark-grey-text"><strong>{{ $items->title }}</strong></a>
