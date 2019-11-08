@@ -34,11 +34,24 @@ class HomeController extends Controller
                 ->with(compact('vendors'));
     }
 
+    /**
+     * Show categories.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
     public function listCategories() {
         $main_categories = Category::where('parent', 0)->where('status', 1)->orderBy('id', 'asc')->take(5)->get();
         return view('list-category')
                 ->with(compact('main_categories'));
     }
+
+
+    /**
+     * Show items related to categories.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
     public function listItems(Request $request) {
 
@@ -63,6 +76,13 @@ class HomeController extends Controller
                 ->with(compact('items_list'));
     }
 
+
+    /**
+     * Show sub categories.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
     public function listSubItems(Request $request) {
         if(is_null($request->main_id) && is_null($request->sub_id)){
             return redirect()->intended(route('home'));
@@ -85,6 +105,12 @@ class HomeController extends Controller
                 ->with(compact('items_list'));
     }
 
+
+    /**
+     * Show Item.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function showItem(Request $request) {
         if(is_null($request->id)){
             return redirect()->intended(route('home'));
@@ -99,5 +125,19 @@ class HomeController extends Controller
         return view('show-item')
                 ->with(compact('item'))
                 ->with(compact('category'));
+    }
+
+    /**
+     * Show the vendor Profile.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function vendorProfile(Request $request) {
+        if(is_null($request->id)){
+            return redirect()->intended(route('home'));
+        }
+        $vendor = Vendor::find($request->id);
+        return view('vendor-profile')
+                ->with(compact('vendor'));
     }
 }

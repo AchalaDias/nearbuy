@@ -24,6 +24,7 @@ Route::get('/web/wishlist/add', 'WishlistController@add')->name('web.wishlist.ad
 Route::get('/web/wishlist/count', 'WishlistController@getCount')->name('web.wishlist.count');
 Route::get('/web/wishlist/list', 'WishlistController@list')->name('web.wishlist.list');
 Route::get('/web/wishlist/delete', 'WishlistController@delete')->name('web.wishlist.delete');
+Route::get('/web/vendor/profile', 'HomeController@vendorProfile')->name('web.show.vendor');
 
 Route::prefix('admin')->group(function() {
 // Auth 

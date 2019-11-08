@@ -108,7 +108,7 @@
           <div class="col-7">
             <h6 class="font-weight-bold pt-2">{{ $vendor->name }}</h6>
             <p class="text-muted">
-                <a  href="" target="_blank"><span class="badge brown mr-2">Profile <i class="fas fa-id-card-alt"></i></span></a>
+                <a  href="{{ route('web.show.vendor', ['id' => $vendor->id ]) }}" target="_blank"><span class="badge brown mr-2">Profile <i class="fas fa-id-card-alt"></i></span></a>
               <!-- Software Engineer -->
             </p>
           </div>

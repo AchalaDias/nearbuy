@@ -7,6 +7,7 @@ use Auth;
 use Helmesvs\Notify\Facades\Notify;
 use App\Item;
 use App\Category;
+use App\Wishlist;
 
 class ItemsController extends Controller
 {
@@ -143,6 +144,9 @@ class ItemsController extends Controller
         }
         $item = Item::find($request->item_id);
         $item->delete();
+
+        $witems = Wishlist::where("item_id", $request->item_id);
+        $witems->delete();
 
         Notify::info('Item Deleted Successfully !', $title = null, $options = []);
         return redirect()->intended(route('admin.items'));
