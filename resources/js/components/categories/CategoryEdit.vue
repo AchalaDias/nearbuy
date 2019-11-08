@@ -17,7 +17,7 @@
                 <div>
                     <input type="file" name="image_file" @change="getImage" ref="fileInput" enctype="multipart/form-data" >
                     <img :src="category.image_path" alt="image" width="300" height="300" class="img-thumbnail">
-                    <span style="color:red" v-for="error in errors.image" v-bind:key="error" >{{ error }}</span>
+                    <span style="color:red" v-for="error in errors.image_path" v-bind:key="error" >{{ error }}</span>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
                 errors: {
                     name: [],
                     category_id: [],
-                    image: []
+                    image_path: []
                 }
             }
         },

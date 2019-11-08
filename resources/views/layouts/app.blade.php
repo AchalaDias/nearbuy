@@ -73,7 +73,7 @@
                     <ul class="navbar-nav nav-flex-icons">
                         <li class="nav-item">
                             <a class="nav-link waves-effect">
-                            <span class="badge red z-depth-1 mr-1"> 0 </span>
+                            <span class="badge orange z-depth-1 mr-1"> 0 </span>
                                 <i class="fas fa-shopping-cart"></i>
                                 <span class="clearfix d-none d-sm-inline-block"> Wish List </span>
                                 </a>
@@ -289,4 +289,41 @@
 
         // Animations Init
         new WOW().init();
-  </script>
+        $(function ($){
+  $.fn.counter = function() {
+    const $this = $(this),
+    numberFrom = parseInt($this.attr('data-from')),
+    numberTo = parseInt($this.attr('data-to')),
+    delta = numberTo - numberFrom,
+    deltaPositive = delta > 0 ? 1 : 0,
+    time = parseInt($this.attr('data-time')),
+    changeTime = 10;
+    
+    let currentNumber = numberFrom,
+    value = delta*changeTime/time;
+    var interval1;
+    const changeNumber = () => {
+      currentNumber += value;
+      //checks if currentNumber reached numberTo
+      (deltaPositive && currentNumber >= numberTo) || (!deltaPositive &&currentNumber<= numberTo) ? currentNumber=numberTo : currentNumber;
+      this.text(parseInt(currentNumber));
+      currentNumber == numberTo ? clearInterval(interval1) : currentNumber;  
+    }
+
+    interval1 = setInterval(changeNumber,changeTime);
+  }
+}(jQuery));
+
+$(document).ready(function(){
+
+  $('.count-up').counter();
+  $('.count1').counter();
+  $('.count2').counter();
+  
+  new WOW().init();
+  
+  setTimeout(function () {
+    $('.count5').counter();
+  }, 3000);
+});
+</script>

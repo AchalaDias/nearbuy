@@ -12,15 +12,14 @@
 */
 
 
-
-Route::get('/', function () {
-    return view('auth.login');
-});
-
 Auth::routes();
-
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+Route::get('/web/category/list', 'HomeController@listCategories')->name('web.category.list');
+Route::get('/web/items/list', 'HomeController@listItems')->name('web.items.list');
+Route::get('/web/sub/items/list', 'HomeController@listSubItems')->name('web.sub.items.list');
+Route::get('/web/show/item', 'HomeController@showItem')->name('web.show.item');
 
 Route::prefix('admin')->group(function() {
 // Auth 
