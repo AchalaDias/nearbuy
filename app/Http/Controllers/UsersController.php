@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Helmesvs\Notify\Facades\Notify;
 use App\Admin;
 use App\Role;
+use App\User;
+use App\Wishlist;
 
 class UsersController extends Controller
 {
@@ -125,6 +127,75 @@ class UsersController extends Controller
 
         Notify::info('User Deleted Successfully !', $title = null, $options = []);
         return redirect()->intended(route('admin.users'));
+    }
+    
+    /**
+     * get web users list.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getWebUsers(Request $request) {
+
+        $users = User::get();
+        return view('admin.users.web-list')
+                ->with(compact('users'));
+    }
+
+     /**
+     * Loard  specific web user by id.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getWebUser(Request $request) {
+
+        if(is_null($request->id)){
+            Notify::error('Invalid User Id ', $title = null, $options = []);
+            return redirect()->intended(route('admin.users.web-list'));
+        }
+        
+        $user = User::find($request->id);
+        return view('admin.users.web-edit')
+                ->with(compact('user'));
+    }
+
+    /**
+     * Save Edited web user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function webUserSave(Request $request) {
+
+        // Validate the form data
+        $validator = $this->validate($request, [
+            'name' => 'required|min:3|max:50',
+            'password' => 'required|confirmed|min:6',
+        ]);
+        $data = $request->all();
+        User::whereId($data['id'])->update($request->except(['password_confirmation', 'email', '_token']));
+
+        Notify::info('User Updated Successfully !', $title = null, $options = []);
+        return redirect()->intended(route('admin.web-user.list'));
+    }
+
+     /**
+     * Delete user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteWebuser(Request $request) {
+
+        if(is_null($request->id)){
+            Notify::error('Invalid User Id ', $title = null, $options = []);
+            return redirect()->intended(route('admin.users'));
+        }
+        $user = User::find($request->id);
+        $user->delete();
+
+        $items = Wishlist::where("user_id", $request->id);
+        $items->delete();
+
+        Notify::info('User Deleted Successfully !', $title = null, $options = []);
+        return redirect()->intended(route('admin.web-user.list'));
     }
     
 

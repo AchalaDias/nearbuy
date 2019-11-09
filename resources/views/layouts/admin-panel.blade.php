@@ -155,7 +155,8 @@
           </a>
           <ul class="treeview-menu">
             @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
-            <li><a href="{{ route('admin.users') }}"><i class="fa fa-users"></i> Users</a></li>
+            <li><a href="{{ route('admin.users') }}"><i class="fa fa-users"></i> Admin Users</a></li>
+            <li><a href="{{ route('admin.web-user.list') }}"><i class="fa fa-users"></i> Web Users</a></li>
             @endif
             <li><a href="{{ route('admin.categories') }}"><i class="fa fa-reorder"></i> Categories</a></li>
             <li><a href="{{ route('admin.items') }}"><i class="fa fa-suitcase"></i> Items</a></li>

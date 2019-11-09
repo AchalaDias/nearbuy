@@ -5,11 +5,11 @@
 <div class="box box-primary">
 
             <div class="box-header with-border">
-              <h3 class="box-title">Create User</h3>
+              <h3 class="box-title">Edit Web User</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form  method="POST" action="{{ route('admin.user.edit.submit') }}">
+            <form  method="POST" action="{{ route('admin.web-users.edit.submit') }}">
             @csrf
               <div class="box-body">
                 <div class="form-group">
@@ -36,28 +36,7 @@
                   <label for="ConfirmPassword">Confirm Password</label>
                   <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" required>
                 </div>
-
-                <div class="form-group">
-                  <label for="Password">Select Role</label>
-                  <div class="form-group">
-                  <select class="form-control" id="role_id" name="role_id" value="{{ old('role') }}" required>
-                  <option  disabled selected>Select....</option>
-                    @foreach($roles as $role)
-                        @if($role->id != 1)
-                            @if ($user->role_id  == $role->id)
-                                <option value="{{ $role->id }}" selected>{{  $role->role_name }}</option>
-                            @else
-                                <option value="{{ $role->id }}">{{  $role->role_name }}</option>
-                            @endif
-                        @endif
-                    @endforeach
-                  </select>
-                  <span style="color:red">{{ $errors->first('role') }}</span>
-                </div>
-                </div>
-
-
-                
+  
               </div>
               <!-- /.box-body -->
 
@@ -68,4 +47,5 @@
           </div>
         </div>
 </section>
+
 @endsection

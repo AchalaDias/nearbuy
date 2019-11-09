@@ -28,10 +28,10 @@ Route::get('/web/vendor/profile', 'HomeController@vendorProfile')->name('web.sho
 
 Route::prefix('admin')->group(function() {
 // Auth 
-  Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
-  Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
-  Route::get('/', 'AdminController@index')->name('admin.dashboard');
-  Route::post('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
+Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+Route::get('/', 'AdminController@index')->name('admin.dashboard');
+Route::post('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
 
 // Users Managment
 Route::get('/users', 'UsersController@index')->name('admin.users');
@@ -40,7 +40,10 @@ Route::post('/users/submit', 'UsersController@createUser')->name('admin.user.sub
 Route::get('/users/edit', 'UsersController@loardEdit')->name('admin.users.edit');
 Route::post('/users/edit/submit', 'UsersController@saveEdit')->name('admin.user.edit.submit');
 Route::post('/users/delete', 'UsersController@delete')->name('admin.users.delete');
-
+Route::get('/web-users/list', 'UsersController@getWebUsers')->name('admin.web-user.list');
+Route::get('/web-users/edit', 'UsersController@getWebUser')->name('admin.web-users.edit');
+Route::post('/web-users/edit/submit', 'UsersController@webUserSave')->name('admin.web-users.edit.submit');
+Route::post('/web-users/delete', 'UsersController@deleteWebuser')->name('admin.web-users.delete');
 
 // Category Mangment
 Route::get('/category', 'CategoryController@index')->name('admin.categories');
