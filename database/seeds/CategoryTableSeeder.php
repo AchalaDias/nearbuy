@@ -15,6 +15,7 @@ class CategoryTableSeeder extends Seeder
             'id' => 1,
             'name' => '== Root ==',
             'parent' => 0,
+            'image_path' => 'pppp',
             'status' => 0,
             'user_id' => 1
         ]);
